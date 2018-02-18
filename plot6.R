@@ -1,8 +1,10 @@
 library(ggplot2)
+library(data.table)
 
 NEI <- readRDS("summarySCC_PM25.rds")
 SCC <- readRDS("Source_Classification_Code.rds")
-
+df <- data.table(NEI)
+data <- subset(df, fips %in% c('06037', '24510') & type == 'ON-ROAD')
 
 subsetNEI <- NEI[(NEI$fips=="24510"|NEI$fips=="06037") & NEI$type=="ON-ROAD",  ]
 
